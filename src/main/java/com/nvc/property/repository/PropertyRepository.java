@@ -12,8 +12,8 @@ public interface PropertyRepository extends JpaRepository<Property,Long> {
 	
 	List<Property> findByUser(String email);
 
-	List<Property> findByBedAndBathAndGarageAndCityAndPriceBetween(Integer bed, Integer bath, Integer garage, String city, Double min, Double max);
+	List<Property> findByBedAndBathAndGarageAndCityAndPriceBetweenAndActiveTrue(Integer bed, Integer bath, Integer garage, String city, Double min, Double max);
 
-
+	List<Property> findByActiveTrue();
 	
 }

@@ -11,9 +11,9 @@ public interface PropertyService {
 	List<Property> getProperties();
 	List<Property> getPropertysByFilter(Integer bed, Integer bath, Integer garage, String city, Double min, Double max);
 	
-	void deactiveListingPropertyById(Long id);
+	void deactivePropertyById(Long id);
 	void uploadProperty(Property property);
-	void deleteProperty(Long id);
+	void deletePropertyById(Long id);
 	
 	PropertyDetails getPropertyById(Long id, String token);
 }

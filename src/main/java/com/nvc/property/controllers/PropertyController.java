@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -68,15 +69,22 @@ public class PropertyController {
 		return new ResponseEntity<>( new ApiResponse("true","new property added successfully"),HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/delete/") // Only Admin can delete
-	public ResponseEntity<ApiResponse> deleteProperty(@RequestHeader("authorization") String token,@RequestParam(name = "id") Long id){
+	@DeleteMapping("/delete/") // only admin can delete
+	public ResponseEntity<ApiResponse> deletePropertyById(@RequestHeader("authorization") String token,@RequestParam(name = "id") Long id){
 		
 		VerifyResponse response =  this.verifyToken(token);
 		
 		if(!(response.isAdmin())) throw new UnauthorizeException("you are not authorized");
 		
-		this.propertyService.deleteProperty(id);
+		this.propertyService.deletePropertyById(id);
 		return new ResponseEntity<>( new ApiResponse("true","delete property successfully"),HttpStatus.ACCEPTED);
+	}
+	
+	@PatchMapping("/deactive/")
+	public ResponseEntity<ApiResponse> deactiveListingPropertyById(@RequestHeader("authorization") String token,@RequestParam(name = "id") Long id) {
+
+		this.propertyService.deactivePropertyById(id);
+		return new ResponseEntity<>( new ApiResponse("true","deactive successfully"),HttpStatus.OK);
 	}
 	
 	@GetMapping("/search/") 
@@ -100,12 +108,6 @@ public class PropertyController {
 			return new ResponseEntity<>(propertys,HttpStatus.OK);	
 	}
 	
-	@PutMapping("/deactive/")
-	public ResponseEntity<ApiResponse> deactiveListingPropertyById(@RequestParam(name = "id") Long id) {
-		
-		this.propertyService.deactiveListingPropertyById(id);
 
-		return new ResponseEntity<>( new ApiResponse("true","deactive successfully"),HttpStatus.OK);
-	}
 	
 }

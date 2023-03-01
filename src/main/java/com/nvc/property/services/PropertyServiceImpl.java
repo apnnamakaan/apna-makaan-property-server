@@ -37,12 +37,12 @@ public class PropertyServiceImpl implements PropertyService {
 			new ResourceNotFoundException("please select all");
 		}
 		
-		List<Property> properies = this.propertyRepository.findByBedAndBathAndGarageAndCityAndPriceBetween(bed, bath, garage, city, min, max);
+		List<Property> properies = this.propertyRepository.findByBedAndBathAndGarageAndCityAndPriceBetweenAndActiveTrue(bed, bath, garage, city, min, max);
 		return properies;
 	}
 
 	@Override
-	public void deactiveListingPropertyById(Long id) {
+	public void deactivePropertyById(Long id) {
 		Property property = this.propertyRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("property not found"));
 		property.setActive(false);
 		this.propertyRepository.save(property);
@@ -56,7 +56,7 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public void deleteProperty(Long id) {
+	public void deletePropertyById(Long id) {
 		Property property = this.propertyRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("property not found"));
 		this.propertyRepository.delete(property);
 	}
@@ -96,7 +96,7 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Override
 	public List<Property> getProperties() {
-		return this.propertyRepository.findAll();
+		return this.propertyRepository.findByActiveTrue();
 	}
 
 }
