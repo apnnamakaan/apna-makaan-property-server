@@ -14,19 +14,12 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
     username: root
-    password: root
-    
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-#    username: ${DB_USER}
-#    password: ${DB_PASSWORD}
-
+    password: root    
     
   jpa: 
     database-platform: org.hibernate.dialect.MySQL5Dialect
-#    show-sql: true
-#    generate-ddl: true
+    show-sql: true
+    generate-ddl: true
     hibernate:
       ddl-auto: update
       
