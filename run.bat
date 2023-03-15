@@ -1,3 +1,3 @@
-@echo user Server
+@echo property Server
 
 mvn spring-boot:run

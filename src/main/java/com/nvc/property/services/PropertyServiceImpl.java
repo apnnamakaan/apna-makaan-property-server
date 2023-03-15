@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import com.nvc.property.exceptions.ResourceNotFoundException;
 import com.nvc.property.models.Property;
 import com.nvc.property.models.PropertyDetails;
@@ -98,5 +97,6 @@ public class PropertyServiceImpl implements PropertyService {
 	public List<Property> getProperties() {
 		return this.propertyRepository.findByActiveTrue();
 	}
+
 
 }

@@ -1,5 +1,5 @@
 server:
-  address: 0.0.0.0 
+  address: 127.0.0.1
   port: 8085
 
 spring:
@@ -10,23 +10,23 @@ spring:
        max-request-size: 100MB  
        file-size-threshold: 1KB
                 
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/test
-#    username: root
-#    password: root
-    
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
 
     
   jpa: 
     database-platform: org.hibernate.dialect.MySQL5Dialect
-    show-sql: true
-    generate-ddl: true
+#    show-sql: true
+#    generate-ddl: true
     hibernate:
       ddl-auto: update
       
